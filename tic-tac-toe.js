@@ -2,10 +2,15 @@ window.addEventListener('load', function () {
     alert("Page Loaded")
     const board = document.getElementById("board")
     const squares = Array.from(board.getElementsByTagName("div"))
+    const newGameBtn = document.getElementsByClassName("btn")[0]
+    const status = document.getElementById("status");
+    console.log(newGameBtn)
+
     let gameOn = true
 
     //Set starting player
     let currentPlay = "0";
+
     //Switches the players
     let switchPlayer = function(){
         console.log("Player has placed " + currentPlay)
@@ -16,6 +21,7 @@ window.addEventListener('load', function () {
         }
     }
 
+    //Checks each the squares to see if player has won
     let checkWin = function(square){
         let playerMove = moves[square]
         console.log("CHECKING SQUARE: ", square)
@@ -60,11 +66,13 @@ window.addEventListener('load', function () {
         return false
         
     }
+
     //Set array to store record of game
     let moves = [" ", " ", " ",
                  " ", " ", " ",
                  " ", " ", " "]
 
+    
     squares.forEach(square => {
         square.classList.add("square")
         
@@ -79,7 +87,6 @@ window.addEventListener('load', function () {
 
                 if(checkWin(squares.indexOf(square)) == true){
                     gameOn = false
-                    const status = this.document.getElementById("status");
                     status.innerText = "Congratulations! " + currentPlay + " is the Winner!"
 
                     status.classList.add("you-won")
@@ -96,6 +103,21 @@ window.addEventListener('load', function () {
         })
     });
     
+
+    newGameBtn.addEventListener("click", () => {
+        console.log("CLICKED NEW GAME")
+        squares.forEach(square => {
+            square.innerText = ""
+        });
+        moves.forEach(move => {
+            move = ""
+        })
+        status.innerText = "Move your mouse over a square and click to play an X or an O."
+        status.classList.remove("you-won")
+        gameOn = true
+        currentPlay = "0"
+
+    })
 
 })
 
