@@ -34,7 +34,13 @@ window.addEventListener('load', function () {
 
                 switchPlayer()
             }
-            
+        })
+
+        square.addEventListener("mouseover", () => {
+            square.classList.add("hover");
+        })
+        square.addEventListener("mouseout", () => {
+            square.classList.remove("hover")
         })
     });
     
