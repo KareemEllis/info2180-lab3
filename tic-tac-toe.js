@@ -9,15 +9,15 @@ window.addEventListener('load', function () {
     let gameOn = true
 
     //Set starting player
-    let currentPlay = "0";
+    let currentPlay = "O";
 
     //Switches the players
     let switchPlayer = function(){
         console.log("Player has placed " + currentPlay)
-        if (currentPlay == "0") {
+        if (currentPlay == "O") {
             currentPlay = "X"
         }else{
-            currentPlay = "0"
+            currentPlay = "O"
         }
     }
 
@@ -80,7 +80,7 @@ window.addEventListener('load', function () {
         square.addEventListener("click", () => {
             if (square.innerText == "" && gameOn == true) {
                 square.innerText = currentPlay
-                
+                square.classList.add(currentPlay)
                 //Adds move to the moves array to record game
                 moves[squares.indexOf(square)] = currentPlay
                 //console.log("Game Recor:\n" + moves)
